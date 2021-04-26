@@ -40,8 +40,14 @@ function reset() {
 
 function sqrt(){
     resultCalc.value = Math.sqrt(inputCalc.value)
+    if(arrlogs.length < 100){
+        arrlogs.push("√"+inputCalc.value +"="+ resultCalc.value+"\n");
+    } else{
+        arrlogs.splice(0,1);
+        arrlogs.push("√"+inputCalc.value +"="+ resultCalc.value+"\n");
+    } 
+
+    localStorage.setItem( 'a', JSON.stringify(arrlogs));
+    document.querySelector("textarea[class=logs]").value = JSON.parse(localStorage.getItem('a'));
 }
 
-function pow(){
-    resultCalc.value=Math.pow(a,b);
-}
