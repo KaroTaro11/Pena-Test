@@ -5,7 +5,6 @@ let arrlogs = new Array();
 
 if(localStorage.getItem('a') == null){
     localStorage.setItem('a', 'null')
-    document.querySelector("textarea[class=logs]").value = JSON.parse(localStorage.getItem('a'));
 } else{
 document.querySelector("textarea[class=logs]").value = JSON.parse(localStorage.getItem('a'));
 arrlogs = JSON.parse(localStorage.getItem('a'));}
