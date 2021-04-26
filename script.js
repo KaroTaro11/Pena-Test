@@ -2,8 +2,14 @@ const inputCalc = document.querySelector('.account'),
       resultCalc = document.querySelector('.result');
 
 let arrlogs = new Array();
+
+if(localStorage.getItem('a') == null){
+    localStorage.setItem('a', 'null')
+    document.querySelector("textarea[class=logs]").value = JSON.parse(localStorage.getItem('a'));
+} else{
 document.querySelector("textarea[class=logs]").value = JSON.parse(localStorage.getItem('a'));
-arrlogs = JSON.parse(localStorage.getItem("a"));
+arrlogs = JSON.parse(localStorage.getItem('a'));}
+
 
 function input(i) {
     inputCalc.value = inputCalc.value + i;
@@ -50,4 +56,3 @@ function sqrt(){
     localStorage.setItem( 'a', JSON.stringify(arrlogs));
     document.querySelector("textarea[class=logs]").value = JSON.parse(localStorage.getItem('a'));
 }
-
