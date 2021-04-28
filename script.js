@@ -1,40 +1,45 @@
 const inputCalc = document.querySelector('.account'),
       resultCalc = document.querySelector('.result');
 
-let arrlogs = new Array();
-
-if(localStorage.getItem('a') == null){
-    localStorage.setItem('a', 'null')
-} else{
+let arrlogss = new Array();
 document.querySelector("textarea[class=logs]").value = JSON.parse(localStorage.getItem('a'));
-arrlogs = JSON.parse(localStorage.getItem('a'));}
-
+arrlogss = JSON.parse(localStorage.getItem('a'));
 
 function input(i) {
+    if (resultCalc.value != '0.') {
+        resultCalc.value = '0.';
+        inputCalc.value = '0.';
+    }
+    if (inputCalc.value == '0.') {
+        inputCalc.value = null;
+    }
+    
+
     inputCalc.value = inputCalc.value + i;
+    
 }
 
 function result() {
     if(eval(inputCalc.value) == undefined){
-        resultCalc.value = '0,00';
-        inputCalc.value = '0,00';
+        resultCalc.value = '0.';
+        inputCalc.value = '0.';
     }
 
     if(eval(inputCalc.value) == Infinity){
-        resultCalc.value = '0,00';
+        resultCalc.value = '0.';
         inputCalc.value = 'Деление на ноль невозможно';
     }
     resultCalc.value = eval(inputCalc.value);
-    if(arrlogs.length < 100){
-        arrlogs.push(inputCalc.value +"="+ resultCalc.value+"\n");
+    if(arrlogss.length < 100){
+        arrlogss.push(inputCalc.value +"="+ resultCalc.value+"\n");
     } else{
-        arrlogs.splice(0,1);
-        arrlogs.push(inputCalc.value +"="+ resultCalc.value+"\n");
+        arrlogss.splice(0,1);
+        arrlogss.push(inputCalc.value +"="+ resultCalc.value+"\n");
     } 
 
     inputCalc.value = eval(inputCalc.value);
     resultCalc.value = eval(inputCalc.value);
-    localStorage.setItem( 'a', JSON.stringify(arrlogs));
+    localStorage.setItem( 'a', JSON.stringify(arrlogss));
     document.querySelector("textarea[class=logs]").value = JSON.parse(localStorage.getItem('a'));
 }
 
@@ -45,13 +50,8 @@ function reset() {
 
 function sqrt(){
     resultCalc.value = Math.sqrt(inputCalc.value)
-    if(arrlogs.length < 100){
-        arrlogs.push("√"+inputCalc.value +"="+ resultCalc.value+"\n");
-    } else{
-        arrlogs.splice(0,1);
-        arrlogs.push("√"+inputCalc.value +"="+ resultCalc.value+"\n");
-    } 
+}
 
-    localStorage.setItem( 'a', JSON.stringify(arrlogs));
-    document.querySelector("textarea[class=logs]").value = JSON.parse(localStorage.getItem('a'));
+function pow(){
+    resultCalc.value=Math.pow(a,b);
 }
